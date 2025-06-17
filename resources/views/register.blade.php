@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ asset('styles/registerstyle.css') }}?v={{ time() }}">
     <title>{{ $mode == 'register' ? 'Registration' : 'Login' }}</title>
 </head>
 <body>
