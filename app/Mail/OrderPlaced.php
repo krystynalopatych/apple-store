@@ -3,9 +3,9 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use App\Models\Order;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -15,12 +15,16 @@ class OrderPlaced extends Mailable
     use Queueable, SerializesModels;
 
     public $order;
+    public $user;
+    public $pdf;
     /**
      * Create a new message instance.
      */
-    public function __construct(Order $order)
+    public function __construct($user, $order, $pdf)
     {
+        $this->user = $user;
         $this->order = $order;
+        $this->pdf = $pdf;
     }
 
     /**
@@ -50,6 +54,9 @@ class OrderPlaced extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromData(fn () => $this->pdf, 'california-receipt.pdf')
+                ->withMime('application/pdf'),
+        ];
     }
 }

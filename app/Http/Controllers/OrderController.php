@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderPlaced;
 
@@ -82,8 +83,16 @@ class OrderController extends Controller
 
         // Update the order status
         $order->update(['status' => 'paid']);
+
+        $order->load('orderItems.product');
+
+        $pdf = Pdf::loadView('emails.orders.receipt', [
+            'user' => $user,
+            'order' => $order
+        ]);
+
         // Send a notification to the user's email
-        Mail::to($user->email)->send(new OrderPlaced($order));
+        Mail::to($user->email)->send(new OrderPlaced($user, $order, $pdf->output()));
 
         return redirect()->route('order.success', $order);
     }
