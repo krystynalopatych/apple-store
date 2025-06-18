@@ -41,6 +41,11 @@
         </div>
     @endforeach
 </div>
+
+<a href="{{ route('search.history') }}">
+    <button type="submit" class="search-button">Search History</button>
+</a>
+
 <div class="logo">
         <a href="{{ route('home') }}">
             <img src="{{ asset('images/california.svg') }}" alt="CALIFORNIA" />

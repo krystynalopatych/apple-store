@@ -23,15 +23,15 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/products/create', [AdminController::class, 'create'])->name('admin.products.create');    // Форма создания
-    Route::post('/admin/products', [AdminController::class, 'store'])->name('admin.products.store');              // Сохранение нового товара
-    Route::get('/admin/products', [AdminController::class, 'index'])->name('admin.products.index');              // Список товаров
-    Route::get('/admin/products/{product}/edit', [AdminController::class, 'edit'])->name('admin.products.edit'); // Форма редактирования
-    Route::put('/admin/products/{product}', [AdminController::class, 'update'])->name('admin.products.update');  // Обновление товара
-    Route::delete('/admin/products/{product}', [AdminController::class, 'destroy'])->name('admin.products.destroy'); // Удаление товара
+    Route::get('/admin/products/create', [AdminController::class, 'create'])->name('admin.products.create');  
+    Route::post('/admin/products', [AdminController::class, 'store'])->name('admin.products.store');             
+    Route::get('/admin/products', [AdminController::class, 'index'])->name('admin.products.index');              
+    Route::get('/admin/products/{product}/edit', [AdminController::class, 'edit'])->name('admin.products.edit'); 
+    Route::put('/admin/products/{product}', [AdminController::class, 'update'])->name('admin.products.update'); 
+    Route::delete('/admin/products/{product}', [AdminController::class, 'destroy'])->name('admin.products.destroy'); 
 });
 
-Route::post('/search', [SearchController::class, 'search'])->name('search.perform');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/search-history', [SearchController::class, 'history'])->name('search.history');
 
 Route::middleware('auth')->group(function () {
@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/order/payment/{order}', [OrderController::class, 'processPayment'])->name('order.payment.process');
     Route::get('/order/success/{order}', [OrderController::class, 'success'])->name('order.success');
 });
+
+
 
 
 

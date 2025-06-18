@@ -48,12 +48,9 @@
                 </nav>
             </div>
             <div class="Block_images">
-                <form action="{{ route('search.perform') }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="submit" style="background:none; border:none; padding:0;">
+                <a href="#LOOKING_SCROLL" style="background:none; border:none; padding:0;">
                         <img class="image-of-searh_figure" src="{{ asset('images/IMAGE-search.svg') }}" alt="search">
-                    </button>
-                </form>
+                </a>
 
                 <a href="{{ route('cart.index') }}" class="register-sign">
                     <img class="image-of-shop_basket" src="{{ asset('images/IMAGEShop.svg') }}" alt="basket">
@@ -179,7 +176,7 @@
             <div>
                 <p class="Main-text-of-id">Looking for anything else?</p>
             </div>
-            <form class="Form-of-divs-looking" action="{{ route('search.perform') }}" method="POST">
+            <form class="Form-of-divs-looking" action="{{ route('search') }}" method="GET">
                 @csrf
                 <label for="looking-line">
                     <img class="img_form" src="{{ asset('images/IMAGE-search.svg') }}" alt="Search">

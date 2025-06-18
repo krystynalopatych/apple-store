@@ -119,12 +119,10 @@
 
 .btn.blue {
     background-color: cadetblue;
-    padding: 8px 8 px;
 }
 
 .btn.green {
     background-color: #7c1321;
-    padding: 8px 8 px;
 }
 
 .product-form {
@@ -214,6 +212,21 @@
     color: #721c24;
 }
 
+.search-button {
+    background-color: #4CAF50; 
+    color: white;            
+    border: none;              
+    padding: 10px 20px;        
+    font-size: 16px;           
+    border-radius: 5px;       
+    cursor: pointer;         
+    transition: background-color 0.3s ease;
+}
+  
+.search-button:hover {
+    background-color: #45a049; 
+}
+  
 
 
 
